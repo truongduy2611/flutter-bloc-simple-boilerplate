@@ -24,15 +24,6 @@ class _LanguageSettingTileState extends State<LanguageSettingTile> {
     super.initState();
   }
 
-  LocaleInfo get currentLocaleInfo {
-    final localeDelegate = LocalizedApp.of(context).delegate;
-    final currentLocale = localeDelegate.currentLocale;
-    return supportLocaleInfoList.firstWhere(
-      (l) => l.locale.countryCode == currentLocale.countryCode,
-      orElse: () => supportLocaleInfoList[0],
-    );
-  }
-
   void _onPressedLanguage() {
     showDialog(
       context: context,
@@ -43,37 +34,39 @@ class _LanguageSettingTileState extends State<LanguageSettingTile> {
             borderRadius: BorderRadius.circular(spacing),
           ),
           title: Text(translate(Keys.language)),
-          content: StatefulBuilder(
-            builder: (context, setState) {
-              Widget _buildCountryList(LocaleInfo localeInfo) {
-                return RadioListTile<LocaleInfo>(
-                  value: localeInfo,
-                  groupValue: currentLocaleInfo,
-                  onChanged: (locale) {
-                    currentSelectedLocale = locale.locale;
-                    isChanged = locale.locale.countryCode !=
-                        widget.currentLanguage.countryCode;
-                    setState(() {});
-                    this.setState(() {});
-                  },
-                  title: Text(localeInfo.name),
-                  secondary: Image.asset(
-                    localeInfo.flagImageUrl,
-                    height: spacing * 4,
-                    width: spacing * 4,
-                  ),
-                );
-              }
+          content: StatefulBuilder(builder: (context, setState) {
+            final currentLocaleInfo = supportLocaleInfoList.firstWhere(
+              (l) => l.locale.countryCode == currentSelectedLocale.countryCode,
+              orElse: () => supportLocaleInfoList[0],
+            );
 
-              return SingleChildScrollView(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children:
-                      supportLocaleInfoList.map(_buildCountryList).toList(),
+            Widget _buildCountryList(LocaleInfo localeInfo) {
+              return RadioListTile<LocaleInfo>(
+                value: localeInfo,
+                groupValue: currentLocaleInfo,
+                onChanged: (locale) {
+                  currentSelectedLocale = locale.locale;
+                  isChanged = locale.locale.countryCode !=
+                      widget.currentLanguage.countryCode;
+                  setState(() {});
+                  this.setState(() {});
+                },
+                title: Text(localeInfo.name),
+                secondary: Image.asset(
+                  localeInfo.flagImageUrl,
+                  height: spacing * 4,
+                  width: spacing * 4,
                 ),
               );
-            },
-          ),
+            }
+
+            return SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: supportLocaleInfoList.map(_buildCountryList).toList(),
+              ),
+            );
+          }),
           actions: <Widget>[
             FlatButton(
               child: Text(translate(Keys.cancel)),
@@ -102,6 +95,12 @@ class _LanguageSettingTileState extends State<LanguageSettingTile> {
 
   @override
   Widget build(BuildContext context) {
+    final localeDelegate = LocalizedApp.of(context).delegate;
+    final currentLocale = localeDelegate.currentLocale;
+    final currentLocaleInfo = supportLocaleInfoList.firstWhere(
+        (l) => l.locale.countryCode == currentLocale.countryCode,
+        orElse: () => supportLocaleInfoList[0]);
+
     if (widget.languageTileBuilder != null) {
       return widget.languageTileBuilder(
         context,
@@ -116,7 +115,9 @@ class _LanguageSettingTileState extends State<LanguageSettingTile> {
         size: 32,
       ),
       title: Text(translate(Keys.language)),
-      subtitle: Text('${currentLocaleInfo.name} ${currentLocaleInfo.flag}'),
+      subtitle: Text(
+        '${currentLocaleInfo.name} ${currentLocaleInfo.flag}',
+      ),
       onTap: _onPressedLanguage,
       dense: true,
       contentPadding: const EdgeInsets.symmetric(horizontal: spacing * 2),
