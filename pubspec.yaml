@@ -1,0 +1,60 @@
+name: flutter_bloc_simple_boilerplate
+description: A new  simple Flutter boilerplate project.
+
+publish_to: "none"
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  flutter_bloc: ^4.0.0
+  flutter_chips_input: ^1.9.0-dev.3
+  flutter_form_builder: ^4.0.0-alpha.2
+  flutter_offline: ^0.3.0
+  flutter_phoenix: ^0.1.0
+  flutter_secure_storage: ^3.3.3
+  flutter_translate: ^1.6.0
+  cupertino_icons: ^0.1.3
+  dio: ^3.0.9
+  equatable: ^1.1.1
+  jwt_decode: ^0.1.0
+  keyboard_dismisser: ^1.0.2
+  shared_preferences: ^0.5.7+3
+  path_provider: ^1.6.7
+  pull_to_refresh: ^1.6.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  build_runner: ^1.10.0
+  json_serializable: ^3.3.0
+  flutter_translate_gen: ^1.2.1
+  flutter_launcher_icons:
+
+flutter:
+  assets:
+    - assets/i18n/
+    - assets/fonts/
+    - assets/images/
+  uses-material-design: true
+  fonts:
+    - family: Quicksand
+      fonts:
+        - asset: assets/fonts/Quicksand/Quicksand-Regular.ttf
+        - asset: assets/fonts/Quicksand/Quicksand-Light.ttf
+        - asset: assets/fonts/Quicksand/Quicksand-SemiBold.ttf
+        - asset: assets/fonts/Quicksand/Quicksand-Medium.ttf
+        - asset: assets/fonts/Quicksand/Quicksand-Bold.ttf
+        - asset: assets/fonts/Quicksand/Quicksand-VariableFont.ttf
+          weight: 700
+flutter_icons:
+  android: "ic_launcher"
+  ios: true
+  image_path: "assets/images/logo.png"
+# flutter pub run flutter_launcher_icons:main
+# flutter packages pub run build_runner watch --delete-conflicting-outputs

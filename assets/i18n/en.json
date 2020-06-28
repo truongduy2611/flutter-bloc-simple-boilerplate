@@ -1,0 +1,14 @@
+{
+  "default_empty_message": "Wow, such empty",
+  "default_error_message": "An error has occurred!",
+  "not_found_page": "Page not found",
+  "no_internet_connection": "No internet connection",
+  "cancel": "Cancel",
+  "ok": "OK",
+  "language": "Language",
+  "appearance": "Appearance",
+  "appearance_dark": "Dark theme",
+  "appearance_light": "White theme",
+  "appearance_system": "System",
+  "settings": "Settings"
+}
