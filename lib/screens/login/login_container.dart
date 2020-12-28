@@ -63,15 +63,17 @@ class _LoginContainerState extends State<LoginContainer> {
                 ),
                 const SizedBox(height: spacing * 4),
                 FormBuilderTextField(
-                  attribute: 'email',
-                  validators: [
+                  name: 'email',
+                  validator: FormBuilderValidators.compose([
                     FormBuilderValidators.required(
+                      context,
                       errorText: translate(Keys.email_is_required),
                     ),
                     FormBuilderValidators.email(
+                      context,
                       errorText: translate(Keys.email_is_invalid),
                     )
-                  ],
+                  ]),
                   decoration: InputDecoration(
                     labelText: translate(
                       Keys.email,
@@ -80,14 +82,13 @@ class _LoginContainerState extends State<LoginContainer> {
                 ),
                 const SizedBox(height: spacing * 2),
                 FormBuilderTextField(
-                  attribute: 'password',
+                  name: 'password',
                   obscureText: true,
                   maxLines: 1,
-                  validators: [
-                    FormBuilderValidators.required(
-                      errorText: translate(Keys.password_is_required),
-                    ),
-                  ],
+                  validator: FormBuilderValidators.required(
+                    context,
+                    errorText: translate(Keys.password_is_required),
+                  ),
                   decoration: InputDecoration(
                     labelText: translate(
                       Keys.password,

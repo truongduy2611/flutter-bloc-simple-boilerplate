@@ -89,7 +89,7 @@ double adaptiveWidth({int columns, BuildContext context}) {
       columns;
 }
 
-extension BuiltContextExtension on BuildContext {
+extension BuildContextExtension on BuildContext {
   ThemeData get theme => Theme.of(this);
   MediaQueryData get mediaQuery => MediaQuery.of(this);
   double get width => MediaQuery.of(this).size.width;
