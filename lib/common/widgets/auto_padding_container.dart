@@ -2,25 +2,25 @@ part of 'widgets.dart';
 
 class AdaptiveContainer extends StatelessWidget {
   const AdaptiveContainer({
-    Key key,
+    Key? key,
     this.sm = 4,
     this.decoration,
     this.alignment = Alignment.center,
     this.maxHeight,
     this.minHeight = 0,
     this.padding,
-    @required this.child,
+    required this.child,
     this.margin,
   }) : super(key: key);
 
   final int sm;
-  final double maxHeight;
+  final double? maxHeight;
   final double minHeight;
-  final EdgeInsets padding;
-  final BoxDecoration decoration;
+  final EdgeInsets? padding;
+  final BoxDecoration? decoration;
   final Alignment alignment;
   final Widget child;
-  final EdgeInsets margin;
+  final EdgeInsets? margin;
 
   static double calculateWidth(context, {int sm = 4}) =>
       adaptiveWidth(

@@ -2,7 +2,7 @@ part of 'widgets.dart';
 
 class ErrorContainer extends StatelessWidget {
   const ErrorContainer({
-    Key key,
+    Key? key,
     this.messageId = Keys.default_error_message,
     this.dense = false,
     this.icon,
@@ -10,7 +10,7 @@ class ErrorContainer extends StatelessWidget {
 
   final String messageId;
   final bool dense;
-  final Widget icon;
+  final Widget? icon;
 
   @override
   Widget build(BuildContext context) {

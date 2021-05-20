@@ -2,7 +2,7 @@ part of 'widgets.dart';
 
 class LoadingContainer extends StatelessWidget {
   const LoadingContainer({
-    Key key,
+    Key? key,
     this.messageId = Keys.default_loading_message,
     this.icon = Icons.search,
     this.color = Colors.grey,
@@ -20,7 +20,11 @@ class LoadingContainer extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           const SizedBox(height: spacing),
-          const CircularProgressIndicator(),
+          const SizedBox(
+            height: spacing * 2,
+            width: spacing * 2,
+            child: CircularProgressIndicator(strokeWidth: 2),
+          ),
           const SizedBox(height: spacing),
           Text(
             translate(messageId),

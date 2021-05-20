@@ -9,7 +9,7 @@ import 'global_blocs/theme/theme.dart';
 import 'localization/localization.dart';
 import 'router/route_generator.dart';
 import 'router/routes.dart';
-import 'utils/bloc_delegate.dart';
+import 'utils/bloc_observer.dart';
 import 'utils/multi_bloc_provider.dart';
 import 'utils/theme_helpers.dart';
 import 'utils/translations.dart';
@@ -21,7 +21,7 @@ Future<void> main() async {
     preferences: TranslatePreferences(),
   );
 
-  BlocSupervisor.delegate = AppBlocDelegate();
+  Bloc.observer = AppBlocObserver();
 
   runApp(
     Phoenix(

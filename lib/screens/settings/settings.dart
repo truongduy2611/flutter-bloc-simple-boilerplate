@@ -4,7 +4,7 @@ import 'package:flutter_bloc_simple_boilerplate/localization/keys.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 
 class SettingsPage extends StatelessWidget {
-  const SettingsPage({Key key, this.hasAppBar = true}) : super(key: key);
+  const SettingsPage({Key? key, this.hasAppBar = true}) : super(key: key);
   final bool hasAppBar;
 
   @override

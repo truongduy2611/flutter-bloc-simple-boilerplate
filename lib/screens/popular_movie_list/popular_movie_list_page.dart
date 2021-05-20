@@ -1,7 +1,7 @@
 part of 'popular_movie_list.dart';
 
 class PopularMovieListPage extends StatelessWidget {
-  const PopularMovieListPage({Key key}) : super(key: key);
+  const PopularMovieListPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

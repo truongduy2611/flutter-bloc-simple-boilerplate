@@ -38,7 +38,7 @@ class RouteGenerator {
   }
 
   static Route<dynamic> createRoute({
-    Widget child,
+    required Widget child,
     bool isFullscreenDialog = false,
   }) {
     return MaterialPageRoute<dynamic>(

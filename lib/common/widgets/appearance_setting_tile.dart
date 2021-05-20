@@ -2,7 +2,7 @@ part of 'widgets.dart';
 
 class AppearanceSettingTile extends StatelessWidget {
   const AppearanceSettingTile({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -24,11 +24,11 @@ class AppearanceSettingTile extends StatelessWidget {
         builder: (context) {
           final themeState = BlocProvider.of<ThemeBloc>(context).state;
           final themeMode = themeState.mode;
-          final darkMode = themeState.darkMode;
+          // final darkMode = themeState.darkMode;
           final useAdaptiveFontSystem = themeState.useAdaptiveFontSystem;
 
-          void _onSetThemeMode(ThemeMode mode) {
-            BlocProvider.of<ThemeBloc>(context).add(SetThemeMode(mode));
+          void _onSetThemeMode(ThemeMode? mode) {
+            BlocProvider.of<ThemeBloc>(context).add(SetThemeMode(mode!));
           }
 
           return AlertDialog(
@@ -94,7 +94,7 @@ class AppearanceSettingTile extends StatelessWidget {
                   // ),
                   SwitchListTile(
                     dense: true,
-                    value: useAdaptiveFontSystem ?? false,
+                    value: useAdaptiveFontSystem == true,
                     title: Text(translate(Keys.use_adaptive_font_system)),
                     onChanged: (useAdaptiveFontSystem) {
                       BlocProvider.of<ThemeBloc>(context).add(
@@ -105,7 +105,7 @@ class AppearanceSettingTile extends StatelessWidget {
               ),
             ),
             actions: <Widget>[
-              FlatButton(
+              TextButton(
                 child: Text(translate(Keys.ok)),
                 onPressed: () {
                   Navigator.pop(context);

@@ -3,13 +3,13 @@ part of 'user_repository.dart';
 class UserStorage {
   UserStorage._();
 
-  String token;
+  String? token;
 
   bool get hasToken => token != null;
 
-  static UserStorage _instance;
+  static late final UserStorage _instance = UserStorage._();
 
-  static UserStorage get instance => _instance ?? (_instance = UserStorage._());
+  static UserStorage get instance => _instance;
 
   Future<bool> saveToken(String token) async {
     bool success = false;
@@ -29,7 +29,7 @@ class UserStorage {
     return success;
   }
 
-  Future<String> getToken() async {
+  Future<String?> getToken() async {
     if (!instance.hasToken) {
       try {
         final sharePrefInstance = await SharedPreferences.getInstance();

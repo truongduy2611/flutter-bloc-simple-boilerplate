@@ -9,28 +9,28 @@ const fontFamily = 'Quicksand';
 
 TextTheme _buildTextTheme(TextTheme base) {
   return base.copyWith(
-    button: base.button.copyWith(fontFamily: fontFamily),
-    overline: base.overline.copyWith(fontFamily: fontFamily),
-    caption: base.caption.copyWith(fontFamily: fontFamily),
-    headline1: base.headline1.copyWith(fontFamily: fontFamily),
-    headline2: base.headline2.copyWith(fontFamily: fontFamily),
-    headline3: base.headline3.copyWith(fontFamily: fontFamily),
-    headline4: base.headline4.copyWith(fontFamily: fontFamily),
-    headline5: base.headline5.copyWith(fontFamily: fontFamily),
-    headline6: base.headline6.copyWith(fontFamily: fontFamily),
-    bodyText2: base.bodyText2.copyWith(fontFamily: fontFamily),
-    bodyText1: base.bodyText1.copyWith(fontFamily: fontFamily),
-    subtitle2: base.subtitle2.copyWith(fontFamily: fontFamily),
-    subtitle1: base.subtitle1.copyWith(fontFamily: fontFamily),
+    button: base.button?.copyWith(fontFamily: fontFamily),
+    overline: base.overline?.copyWith(fontFamily: fontFamily),
+    caption: base.caption?.copyWith(fontFamily: fontFamily),
+    headline1: base.headline1?.copyWith(fontFamily: fontFamily),
+    headline2: base.headline2?.copyWith(fontFamily: fontFamily),
+    headline3: base.headline3?.copyWith(fontFamily: fontFamily),
+    headline4: base.headline4?.copyWith(fontFamily: fontFamily),
+    headline5: base.headline5?.copyWith(fontFamily: fontFamily),
+    headline6: base.headline6?.copyWith(fontFamily: fontFamily),
+    bodyText2: base.bodyText2?.copyWith(fontFamily: fontFamily),
+    bodyText1: base.bodyText1?.copyWith(fontFamily: fontFamily),
+    subtitle2: base.subtitle2?.copyWith(fontFamily: fontFamily),
+    subtitle1: base.subtitle1?.copyWith(fontFamily: fontFamily),
   );
 }
 
 ThemeData buildTheme({
-  ThemeMode mode,
+  required ThemeMode mode,
+  required MaterialColor mainColor,
+  Color? primaryColor,
+  Color? primaryColorDark,
   bool useAdaptiveFontSystem = false,
-  MaterialColor mainColor,
-  Color primaryColor,
-  Color primaryColorDark,
 }) {
   final accentColor = mainColor[200];
   final isDark = mode == ThemeMode.dark;
@@ -43,7 +43,8 @@ ThemeData buildTheme({
           primaryColor: primaryColor ?? Colors.grey[900],
           // fontFamily: fontFamily,
           errorColor: Colors.redAccent[100],
-          appBarTheme: AppBarTheme(color: Colors.grey[800]),
+          appBarTheme: AppBarTheme(
+              color: Colors.grey[800], brightness: Brightness.light),
         )
       : ThemeData(
           brightness: Brightness.light,
@@ -51,7 +52,11 @@ ThemeData buildTheme({
           accentColor: mainColor,
           primaryColor: primaryColor ?? mainColor,
           // fontFamily: fontFamily,
-          appBarTheme: AppBarTheme(color: mainColor),
+          appBarTheme: AppBarTheme(
+            color: mainColor,
+            brightness:
+                ThemeData.estimateBrightnessForColor(primaryColor ?? mainColor),
+          ),
           errorColor: Colors.redAccent,
           floatingActionButtonTheme: FloatingActionButtonThemeData(
             backgroundColor: mainColor,
@@ -95,7 +100,7 @@ ThemeData buildTheme({
     buttonTheme: baseTheme.buttonTheme.copyWith(
       shape: const StadiumBorder(),
     ),
-    cursorColor: mainColor[300],
+    // cursorColor: mainColor[300],
     dialogTheme: baseTheme.dialogTheme.copyWith(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(spacing),

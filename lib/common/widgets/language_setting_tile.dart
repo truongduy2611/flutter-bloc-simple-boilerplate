@@ -2,13 +2,13 @@ part of 'widgets.dart';
 
 class LanguageSettingTile extends StatefulWidget {
   const LanguageSettingTile({
-    Key key,
-    this.currentLanguage,
+    Key? key,
+    required this.currentLanguage,
     this.languageTileBuilder,
   }) : super(key: key);
 
   final Locale currentLanguage;
-  final Function(BuildContext, LocaleInfo, VoidCallback) languageTileBuilder;
+  final Function(BuildContext, LocaleInfo, VoidCallback)? languageTileBuilder;
 
   @override
   _LanguageSettingTileState createState() => _LanguageSettingTileState();
@@ -16,7 +16,7 @@ class LanguageSettingTile extends StatefulWidget {
 
 class _LanguageSettingTileState extends State<LanguageSettingTile> {
   bool isChanged = false;
-  Locale currentSelectedLocale;
+  late Locale currentSelectedLocale;
 
   @override
   void initState() {
@@ -45,7 +45,7 @@ class _LanguageSettingTileState extends State<LanguageSettingTile> {
                 value: localeInfo,
                 groupValue: currentLocaleInfo,
                 onChanged: (locale) {
-                  currentSelectedLocale = locale.locale;
+                  currentSelectedLocale = locale!.locale;
                   isChanged = locale.locale.countryCode !=
                       widget.currentLanguage.countryCode;
                   setState(() {});
@@ -68,14 +68,14 @@ class _LanguageSettingTileState extends State<LanguageSettingTile> {
             );
           }),
           actions: <Widget>[
-            FlatButton(
+            TextButton(
               child: Text(translate(Keys.cancel)),
               onPressed: () {
                 currentSelectedLocale = widget.currentLanguage;
                 Navigator.pop(context);
               },
             ),
-            FlatButton(
+            TextButton(
               child: Text(translate(Keys.ok)),
               onPressed: () {
                 Navigator.pop(context);
@@ -102,7 +102,7 @@ class _LanguageSettingTileState extends State<LanguageSettingTile> {
         orElse: () => supportLocaleInfoList[0]);
 
     if (widget.languageTileBuilder != null) {
-      return widget.languageTileBuilder(
+      return widget.languageTileBuilder!(
         context,
         currentLocaleInfo,
         _onPressedLanguage,

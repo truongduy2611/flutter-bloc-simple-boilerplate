@@ -7,10 +7,9 @@ class WithDialog extends StatelessWidget {
   final Widget child;
 
   const WithDialog({
-    Key key,
-    @required this.child,
-  })  : assert(child != null),
-        super(key: key);
+    Key? key,
+    required this.child,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -63,13 +62,11 @@ class WithDialog extends StatelessWidget {
 
 class _ConfirmDialog extends StatelessWidget {
   const _ConfirmDialog({
-    Key key,
-    @required this.titleId,
-    @required this.messageId,
-    @required this.onDismissed,
-  })  : assert(messageId != null),
-        assert(onDismissed != null),
-        super(key: key);
+    Key? key,
+    required this.titleId,
+    required this.messageId,
+    required this.onDismissed,
+  }) : super(key: key);
 
   final String titleId;
   final String messageId;
@@ -94,7 +91,7 @@ class _ConfirmDialog extends StatelessWidget {
           shape: _defaultDialogShape,
           content: Text(translate(messageId)),
           actions: <Widget>[
-            FlatButton(
+            TextButton(
               child: Text(translate(Keys.ok)),
               onPressed: onDismissed,
             ),
@@ -106,9 +103,7 @@ class _ConfirmDialog extends StatelessWidget {
 }
 
 class _LoadingDialog extends StatelessWidget {
-  const _LoadingDialog({Key key, @required this.messageId})
-      : assert(messageId != null),
-        super(key: key);
+  const _LoadingDialog({Key? key, required this.messageId}) : super(key: key);
 
   final String messageId;
   static const _defaultDialogShape = RoundedRectangleBorder(
@@ -126,7 +121,11 @@ class _LoadingDialog extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              const CircularProgressIndicator(),
+              const SizedBox(
+                height: spacing * 2,
+                width: spacing * 2,
+                child: CircularProgressIndicator(strokeWidth: 2),
+              ),
               const SizedBox(height: spacing * 2),
               Text(translate(messageId)),
             ],

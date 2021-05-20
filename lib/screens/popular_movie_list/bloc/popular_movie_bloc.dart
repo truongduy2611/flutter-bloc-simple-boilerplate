@@ -15,10 +15,10 @@ class PopularMovieBloc extends Bloc<PopularMovieEvent, PopularMovieState> {
   final MovieRepository movieRepository;
   final RefreshController refreshController;
 
-  PopularMovieBloc({this.movieRepository, this.refreshController});
-
-  @override
-  PopularMovieState get initialState => PopularMovieInitial();
+  PopularMovieBloc({
+    required this.movieRepository,
+    required this.refreshController,
+  }) : super(PopularMovieInitial());
 
   @override
   Stream<PopularMovieState> mapEventToState(

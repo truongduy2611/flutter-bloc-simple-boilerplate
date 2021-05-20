@@ -1,7 +1,7 @@
 part of 'login.dart';
 
 class LoginPage extends StatelessWidget {
-  const LoginPage({Key key}) : super(key: key);
+  const LoginPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

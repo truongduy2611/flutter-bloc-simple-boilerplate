@@ -5,28 +5,28 @@ part 'movie.g.dart';
 
 @JsonSerializable()
 class MovieModel extends Equatable {
-  final int id;
-  final String title;
+  final int? id;
+  final String? title;
 
   @JsonKey(name: 'original_title')
-  final String originalTitle;
+  final String? originalTitle;
 
   @JsonKey(name: 'backdrop_path')
-  final String backdropPath;
+  final String? backdropPath;
 
   @JsonKey(name: 'poster_path')
-  final String posterPath;
+  final String? posterPath;
 
   @JsonKey(name: 'vote_average')
-  final double voteAverage;
+  final double? voteAverage;
 
   @JsonKey(name: 'vote_count')
-  final int voteCount;
+  final int? voteCount;
 
   @JsonKey(name: 'release_date')
-  final String releaseDate;
+  final String? releaseDate;
 
-  final String overview;
+  final String? overview;
 
   const MovieModel({
     this.backdropPath,
@@ -52,7 +52,7 @@ class MovieModel extends Equatable {
   }
 
   @override
-  List<Object> get props => [
+  List<Object?> get props => [
         backdropPath,
         posterPath,
         voteAverage,

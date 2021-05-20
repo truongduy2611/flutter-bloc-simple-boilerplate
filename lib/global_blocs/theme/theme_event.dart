@@ -7,7 +7,7 @@ class LoadThemeFromPrefEvent extends ThemeEvent {}
 class SetThemeMode extends ThemeEvent {
   final ThemeMode mode;
 
-  SetThemeMode(this.mode) : assert(mode != null);
+  SetThemeMode(this.mode);
 }
 
 class SetAdaptiveFontSystemEvent extends ThemeEvent {
@@ -18,11 +18,11 @@ class SetAdaptiveFontSystemEvent extends ThemeEvent {
 class SetMainColorEvent extends ThemeEvent {
   final MaterialColor color;
 
-  SetMainColorEvent({this.color});
+  SetMainColorEvent({required this.color});
 }
 
 class SetDarkMode extends ThemeEvent {
   final DarkMode mode;
 
-  SetDarkMode(this.mode) : assert(mode != null);
+  SetDarkMode(this.mode);
 }

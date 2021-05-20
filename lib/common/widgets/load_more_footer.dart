@@ -2,7 +2,7 @@ part of 'widgets.dart';
 
 class LoadingFooter extends StatelessWidget {
   const LoadingFooter({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -16,10 +16,10 @@ class LoadingFooter extends StatelessWidget {
             child: Center(
               child: SizedBox(
                 child: CircularProgressIndicator(
-                  strokeWidth: 3,
+                  strokeWidth: 2,
                 ),
-                height: 32,
-                width: 32,
+                height: spacing * 2,
+                width: spacing * 2,
               ),
             ),
           );

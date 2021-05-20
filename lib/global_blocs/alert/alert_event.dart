@@ -16,7 +16,7 @@ class ShowAlertEvent extends AlertEvent {
   final AlertType type;
   final String content;
 
-  ShowAlertEvent({this.type, this.content});
+  ShowAlertEvent({required this.type, required this.content});
 
   ShowAlertEvent.loading({
     this.content = Keys.default_loading_message,

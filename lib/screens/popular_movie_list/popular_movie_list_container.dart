@@ -1,7 +1,7 @@
 part of 'popular_movie_list.dart';
 
 class PopularMovieListContainer extends StatelessWidget {
-  const PopularMovieListContainer({Key key}) : super(key: key);
+  const PopularMovieListContainer({Key? key}) : super(key: key);
 
   Widget _buildMovieList(BuildContext context) {
     return BlocBuilder<PopularMovieBloc, PopularMovieState>(

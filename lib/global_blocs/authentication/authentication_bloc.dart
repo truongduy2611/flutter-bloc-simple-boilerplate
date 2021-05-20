@@ -3,11 +3,9 @@ part of 'authentication.dart';
 class AuthenticationBloc
     extends Bloc<AuthenticationEvent, AuthenticationState> {
   final UserRepository userRepository;
-  AuthenticationBloc({@required this.userRepository})
-      : assert(userRepository != null);
 
-  @override
-  AuthenticationState get initialState => AuthenticationInitial();
+  AuthenticationBloc({required this.userRepository})
+      : super(AuthenticationInitial());
 
   @override
   Stream<AuthenticationState> mapEventToState(

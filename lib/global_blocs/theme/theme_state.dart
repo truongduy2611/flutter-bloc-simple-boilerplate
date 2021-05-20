@@ -60,10 +60,10 @@ class ThemeState extends Equatable {
   Map<String, dynamic> toJson() => _$ThemeStateToJson(this);
 
   ThemeState copyWith({
-    ThemeMode mode,
-    DarkMode darkMode,
-    bool useAdaptiveFontSystem,
-    MaterialColor mainColor,
+    ThemeMode? mode,
+    DarkMode? darkMode,
+    bool? useAdaptiveFontSystem,
+    MaterialColor? mainColor,
   }) =>
       ThemeState(
         darkMode: darkMode ?? this.darkMode,

@@ -1,6 +1,6 @@
 part of 'widgets.dart';
 
-Widget networkStatusBuilder(BuildContext context, Widget child) {
+Widget networkStatusBuilder(BuildContext context, Widget? child) {
   if (Platform.isIOS || Platform.isAndroid) {
     return OfflineBuilder(
       child: child,
@@ -52,5 +52,5 @@ Widget networkStatusBuilder(BuildContext context, Widget child) {
     );
   }
 
-  return child;
+  return child!;
 }

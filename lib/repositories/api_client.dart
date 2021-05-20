@@ -8,12 +8,12 @@ class ApiClients {
 
   static Dio getApiClient({
     bool usePublicApi = false,
-    Map<String, String> headers,
+    Map<String, String>? headers,
   }) {
     return Dio()
       ..options = BaseOptions(
         baseUrl: baseUrl,
-        headers: <String, String>{
+        headers: <String, String?>{
           if (!usePublicApi) 'Authorization': UserStorage.instance.token,
           if (headers != null) ...headers,
         },

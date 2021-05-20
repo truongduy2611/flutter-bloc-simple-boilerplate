@@ -12,7 +12,7 @@ class PopularMovieLoaded extends PopularMovieState {
   final List<MovieModel> popularMovieList;
   final int page;
 
-  PopularMovieLoaded({this.popularMovieList, this.page = 1});
+  PopularMovieLoaded({required this.popularMovieList, this.page = 1});
 
   @override
   List<Object> get props => [popularMovieList, page];

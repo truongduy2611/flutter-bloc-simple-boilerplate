@@ -1,8 +1,7 @@
 part of 'theme.dart';
 
 class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
-  @override
-  ThemeState get initialState => const ThemeState.system();
+  ThemeBloc() : super(const ThemeState.system());
 
   @override
   Stream<ThemeState> mapEventToState(
@@ -39,11 +38,13 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
   Future<ThemeState> getThemeState() async {
     try {
       final instance = await SharedPreferences.getInstance();
-      final themeJson = json.decode(instance.getString('THEME'));
-      return ThemeState.fromJson(themeJson);
-    } catch (e) {
-      return const ThemeState.system();
-    }
+      final themeString = instance.getString('THEME');
+      if (themeString != null) {
+        final themeJson = json.decode(themeString);
+        return ThemeState.fromJson(themeJson);
+      }
+    } catch (_) {}
+    return const ThemeState.system();
   }
 
   Future<bool> saveThemeState(ThemeState state) async {

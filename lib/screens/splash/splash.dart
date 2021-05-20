@@ -5,7 +5,7 @@ import 'package:flutter_bloc_simple_boilerplate/global_blocs/global_blocs.dart';
 import 'package:flutter_bloc_simple_boilerplate/router/routes.dart';
 
 class SplashPage extends StatelessWidget {
-  const SplashPage({Key key}) : super(key: key);
+  const SplashPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

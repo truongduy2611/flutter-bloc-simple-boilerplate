@@ -2,10 +2,9 @@ part of 'widgets.dart';
 
 class CustomAnimatedSwitcher extends StatelessWidget {
   const CustomAnimatedSwitcher({
-    Key key,
-    @required this.child,
-  })  : assert(child != null),
-        super(key: key);
+    Key? key,
+    required this.child,
+  }) : super(key: key);
 
   final Widget child;
 

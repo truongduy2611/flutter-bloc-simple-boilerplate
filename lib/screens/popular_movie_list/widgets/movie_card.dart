@@ -1,10 +1,10 @@
 part of '../popular_movie_list.dart';
 
 class MovieCard extends StatelessWidget {
-  const MovieCard({Key key, this.movie}) : super(key: key);
+  const MovieCard({Key? key, required this.movie}) : super(key: key);
   final MovieModel movie;
 
-  static String getImageUrl(String imageUrl) {
+  static String getImageUrl(String? imageUrl) {
     return 'https://image.tmdb.org/t/p/w440_and_h660_face$imageUrl';
   }
 

@@ -5,7 +5,7 @@ import 'package:flutter_bloc_simple_boilerplate/screens/popular_movie_list/popul
 import 'package:flutter_translate/flutter_translate.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key key}) : super(key: key);
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   _HomePageState createState() => _HomePageState();
@@ -13,7 +13,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   int _currentTab = 0;
-  TabController _tabController;
+  late TabController _tabController;
 
   @override
   void initState() {
@@ -33,6 +33,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     return Scaffold(
       appBar: AppBar(
         title: Text(translate(Keys.home)),
+        brightness: ThemeData.estimateBrightnessForColor(
+            Theme.of(context).primaryColor),
         actions: [
           IconButton(
             icon: const Icon(Icons.settings),
@@ -56,12 +58,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         items: [
           BottomNavigationBarItem(
               icon: const Icon(Icons.movie_filter),
-              title: Text(translate(Keys.popular_movie_list))),
+              label: translate(Keys.popular_movie_list)),
           BottomNavigationBarItem(
             icon: const Icon(Icons.move_to_inbox),
-            title: Text(
-              translate(Keys.favorite_movie_list),
-            ),
+            label: translate(Keys.favorite_movie_list),
           )
         ],
       ),

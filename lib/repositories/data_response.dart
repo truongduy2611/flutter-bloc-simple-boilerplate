@@ -6,9 +6,9 @@ import 'package:flutter_bloc_simple_boilerplate/localization/keys.dart';
 typedef ProcessCallback<T> = T Function(Map<String, dynamic> responseData);
 
 class DataResponse<T> {
-  Status status;
-  T data;
-  String message;
+  late Status status;
+  late T data;
+  late String message;
 
   DataResponse.success(this.data) : status = Status.Success;
 
@@ -27,7 +27,7 @@ class DataResponse<T> {
 
 Future<DataResponse<T>> makeRequest<T>(
   Future<dio.Response> request, {
-  ProcessCallback<T> processCallback,
+  ProcessCallback<T>? processCallback,
 }) async {
   try {
     final response = await request;

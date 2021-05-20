@@ -6,7 +6,7 @@ class TranslatePreferences implements ITranslatePreferences {
   static const String _selectedLocaleKey = 'selected_locale';
 
   @override
-  Future<Locale> getPreferredLocale() async {
+  Future<Locale?> getPreferredLocale() async {
     final preferences = await SharedPreferences.getInstance();
 
     if (!preferences.containsKey(_selectedLocaleKey)) {
@@ -14,7 +14,7 @@ class TranslatePreferences implements ITranslatePreferences {
     }
 
     final locale = preferences.getString(_selectedLocaleKey);
-    return localeFromString(locale);
+    return locale != null ? localeFromString(locale) : null;
   }
 
   @override

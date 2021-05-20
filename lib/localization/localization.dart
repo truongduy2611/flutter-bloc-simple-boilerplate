@@ -10,7 +10,12 @@ class LocaleInfo {
   final Locale locale;
   final String flagImageUrl;
 
-  const LocaleInfo(this.locale, {this.name, this.flag, this.flagImageUrl});
+  const LocaleInfo(
+    this.locale, {
+    required this.name,
+    required this.flag,
+    required this.flagImageUrl,
+  });
 }
 
 const supportLocaleInfoList = [

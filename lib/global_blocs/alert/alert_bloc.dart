@@ -1,8 +1,7 @@
 part of 'alert.dart';
 
 class AlertBloc extends Bloc<AlertEvent, AlertState> {
-  @override
-  AlertState get initialState => AlertHidden();
+  AlertBloc() : super(AlertHidden());
 
   @override
   Stream<AlertState> mapEventToState(

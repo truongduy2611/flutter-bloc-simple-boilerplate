@@ -2,7 +2,7 @@ part of 'widgets.dart';
 
 class EmptyContainer extends StatelessWidget {
   const EmptyContainer({
-    Key key,
+    Key? key,
     this.messageId = Keys.default_empty_message,
     this.icon = Icons.search,
     this.color = Colors.grey,

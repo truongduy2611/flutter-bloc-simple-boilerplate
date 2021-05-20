@@ -10,7 +10,7 @@ enum _ImageType {
 class CustomImage extends StatelessWidget {
   const CustomImage(
     this.src, {
-    Key key,
+    Key? key,
     this.height,
     this.width,
     this.fit,
@@ -21,7 +21,7 @@ class CustomImage extends StatelessWidget {
 
   const CustomImage.network(
     this.src, {
-    Key key,
+    Key? key,
     this.height,
     this.width,
     this.fit,
@@ -32,7 +32,7 @@ class CustomImage extends StatelessWidget {
 
   const CustomImage.asset(
     this.src, {
-    Key key,
+    Key? key,
     this.height,
     this.width,
     this.fit,
@@ -44,11 +44,11 @@ class CustomImage extends StatelessWidget {
   final _ImageType _type;
 
   final String src;
-  final double height;
-  final double width;
-  final BoxFit fit;
+  final double? height;
+  final double? width;
+  final BoxFit? fit;
+  final BorderRadius? borderRadius;
   final Alignment alignment;
-  final BorderRadius borderRadius;
 
   @override
   Widget build(BuildContext context) {

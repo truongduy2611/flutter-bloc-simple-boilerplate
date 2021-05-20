@@ -1,99 +1,105 @@
 part of 'login.dart';
 
 class LoginContainer extends StatefulWidget {
-  const LoginContainer({Key key}) : super(key: key);
+  const LoginContainer({Key? key}) : super(key: key);
 
   @override
   _LoginContainerState createState() => _LoginContainerState();
 }
 
 class _LoginContainerState extends State<LoginContainer> {
-  final GlobalKey<FormBuilderState> _fbKey = GlobalKey<FormBuilderState>();
+  late FormGroup _formGroup;
+
+  @override
+  void initState() {
+    super.initState();
+    _formGroup = FormGroup({
+      'email': FormControl<String>(
+        value: '',
+        validators: [Validators.required, Validators.email],
+      ),
+      'password': FormControl<String>(
+        value: '',
+        validators: [Validators.required],
+      ),
+    });
+  }
 
   void _onPressedLogin() {
-    final isValidForm = _fbKey.currentState.saveAndValidate();
-
-    if (isValidForm) {
+    if (_formGroup.valid) {
+      FocusManager.instance.rootScope.unfocus();
       BlocProvider.of<LoginBloc>(context).add(
-        OnPressedLoginButtonEvent(_fbKey.currentState.value),
+        OnPressedLoginButtonEvent(_formGroup.value),
       );
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        actions: [
-          LanguageSettingTile(
-            languageTileBuilder: (context, locale, onPressed) {
-              return FlatButton.icon(
-                onPressed: onPressed,
-                icon: Image.asset(
-                  locale.flagImageUrl,
-                  height: spacing * 4,
-                  width: spacing * 4,
-                ),
-                label: Text(locale.name),
-              );
-            },
-            currentLanguage: LocalizedApp.of(context).delegate.currentLocale,
-          ),
-        ],
-      ),
-      body: Center(
-        child: SingleChildScrollView(
+    return KeyboardDismisser(
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          actions: [
+            LanguageSettingTile(
+              languageTileBuilder: (context, locale, onPressed) {
+                return TextButton.icon(
+                  onPressed: onPressed,
+                  icon: Image.asset(
+                    locale.flagImageUrl,
+                    height: spacing * 4,
+                    width: spacing * 4,
+                  ),
+                  label: Text(locale.name),
+                );
+              },
+              currentLanguage: LocalizedApp.of(context).delegate.currentLocale,
+            ),
+          ],
+        ),
+        body: SingleChildScrollView(
           padding: const EdgeInsets.all(spacing * 2),
-          child: FormBuilder(
-            key: _fbKey,
-            initialValue: const <String, dynamic>{
-              'email': '',
-              'password': '',
-            },
+          child: ReactiveForm(
+            formGroup: _formGroup,
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
+                const SizedBox(height: spacing * 4),
                 Image.asset(
                   Assets.logoIcon,
-                  height: 128,
-                  width: 128,
+                  height: 96,
+                  width: 96,
                 ),
-                const SizedBox(height: spacing * 4),
-                FormBuilderTextField(
-                  name: 'email',
-                  validator: FormBuilderValidators.compose([
-                    FormBuilderValidators.required(
-                      context,
-                      errorText: translate(Keys.email_is_required),
-                    ),
-                    FormBuilderValidators.email(
-                      context,
-                      errorText: translate(Keys.email_is_invalid),
-                    )
-                  ]),
+                const SizedBox(height: spacing * 2),
+                ReactiveTextField(
+                  formControlName: 'email',
+                  autocorrect: false,
+                  validationMessages: (_) => {
+                    ValidationMessage.required:
+                        translate(Keys.email_is_required),
+                    ValidationMessage.email: translate(Keys.email_is_invalid)
+                  },
                   decoration: InputDecoration(
                     labelText: translate(
                       Keys.email,
                     ),
                   ),
+                  autofillHints: const [AutofillHints.email],
                 ),
                 const SizedBox(height: spacing * 2),
-                FormBuilderTextField(
-                  name: 'password',
+                ReactiveTextField(
+                  formControlName: 'password',
+                  autocorrect: false,
                   obscureText: true,
-                  maxLines: 1,
-                  validator: FormBuilderValidators.required(
-                    context,
-                    errorText: translate(Keys.password_is_required),
-                  ),
+                  validationMessages: (_) => {
+                    ValidationMessage.required:
+                        translate(Keys.password_is_required),
+                  },
                   decoration: InputDecoration(
-                    labelText: translate(
-                      Keys.password,
-                    ),
+                    labelText: translate(Keys.password),
                   ),
+                  autofillHints: const [AutofillHints.password],
                 ),
                 const SizedBox(height: spacing * 2),
                 FloatingActionButton.extended(
