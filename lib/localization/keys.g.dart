@@ -63,4 +63,6 @@ class Keys {
   static const String favorite_movie_list = 'favorite_movie_list';
 
   static const String home = 'home';
+
+  static const String skip_to_home = 'skip_to_home';
 }

@@ -26,12 +26,17 @@ class _LoginContainerState extends State<LoginContainer> {
   }
 
   void _onPressedLogin() {
+    _formGroup.markAllAsTouched();
     if (_formGroup.valid) {
       FocusManager.instance.rootScope.unfocus();
       BlocProvider.of<LoginBloc>(context).add(
         OnPressedLoginButtonEvent(_formGroup.value),
       );
     }
+  }
+
+  void _onPressedSkipButton() {
+    Navigator.pushReplacementNamed(context, Routes.home);
   }
 
   @override
@@ -106,6 +111,11 @@ class _LoginContainerState extends State<LoginContainer> {
                   heroTag: null,
                   onPressed: _onPressedLogin,
                   label: Text(translate(Keys.login)),
+                ),
+                const SizedBox(height: spacing * 2),
+                TextButton(
+                  onPressed: _onPressedSkipButton,
+                  child: Text(translate(Keys.skip_to_home)),
                 )
               ],
             ),

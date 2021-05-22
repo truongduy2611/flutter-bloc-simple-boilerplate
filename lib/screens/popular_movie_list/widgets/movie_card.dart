@@ -4,14 +4,19 @@ class MovieCard extends StatelessWidget {
   const MovieCard({Key? key, required this.movie}) : super(key: key);
   final MovieModel movie;
 
-  static String getImageUrl(String? imageUrl) {
-    return 'https://image.tmdb.org/t/p/w440_and_h660_face$imageUrl';
-  }
-
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Navigator.push(
+          context,
+          RouteGenerator.createRoute(
+            child: MovieDetailPage(
+              movie: movie,
+            ),
+          ),
+        );
+      },
       child: Padding(
         padding: const EdgeInsets.all(spacing),
         child: Row(
@@ -19,7 +24,7 @@ class MovieCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             CustomImage.network(
-              getImageUrl(movie.posterPath),
+              movie.poster,
               height: 120,
               width: 80,
             ),

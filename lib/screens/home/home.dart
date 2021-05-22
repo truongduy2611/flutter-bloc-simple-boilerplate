@@ -60,7 +60,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               icon: const Icon(Icons.movie_filter),
               label: translate(Keys.popular_movie_list)),
           BottomNavigationBarItem(
-            icon: const Icon(Icons.move_to_inbox),
+            icon: const Icon(Icons.favorite),
             label: translate(Keys.favorite_movie_list),
           )
         ],

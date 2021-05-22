@@ -1,10 +1,11 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc_simple_boilerplate/models/genre.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-part 'movie.g.dart';
+part 'movie_detail.g.dart';
 
 @JsonSerializable()
-class MovieModel extends Equatable {
+class MovieDetailModel extends Equatable {
   final int? id;
   final String? title;
 
@@ -23,12 +24,16 @@ class MovieModel extends Equatable {
   @JsonKey(name: 'vote_count')
   final int? voteCount;
 
+  final int? revenue;
+
   @JsonKey(name: 'release_date')
   final String? releaseDate;
 
   final String? overview;
 
-  const MovieModel({
+  final List<GenreModel>? genres;
+
+  const MovieDetailModel({
     this.backdropPath,
     this.posterPath,
     this.voteAverage,
@@ -38,13 +43,15 @@ class MovieModel extends Equatable {
     this.title,
     this.id,
     this.originalTitle,
+    this.revenue,
+    this.genres,
   });
 
-  factory MovieModel.fromJson(Map<String, dynamic> json) {
-    return _$MovieModelFromJson(json);
+  factory MovieDetailModel.fromJson(Map<String, dynamic> json) {
+    return _$MovieDetailModelFromJson(json);
   }
 
-  Map<String, dynamic> toJson() => _$MovieModelToJson(this);
+  Map<String, dynamic> toJson() => _$MovieDetailModelToJson(this);
 
   @override
   String toString() {
@@ -62,6 +69,8 @@ class MovieModel extends Equatable {
         title,
         id,
         originalTitle,
+        genres,
+        revenue,
       ];
 
   String get poster =>

@@ -10,5 +10,22 @@
   "appearance_dark": "Dark theme",
   "appearance_light": "White theme",
   "appearance_system": "System",
-  "settings": "Settings"
+  "settings": "Settings",
+  "login": "Login",
+  "logout": "Logout",
+  "email": "Email",
+  "email.is_required": "Email is required",
+  "password.is_required": "Password is required",
+  "email.is_invalid": "Email is invalid",
+  "password": "Password",
+  "default_loading_message": "Please wait..",
+  "default_network_error_message": "Network error, please try later",
+  "default_dialog_title": "Alert",
+  "release_to_load_more": "Release to load more",
+  "use_adaptive_font_system": "Use system font",
+  "appearance_use_true_dark": "Black",
+  "popular_movie_list": "Popular",
+  "favorite_movie_list": "Favorite",
+  "home": "Home",
+  "skip_to_home": "Skip"
 }

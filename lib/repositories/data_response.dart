@@ -1,9 +1,12 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart' as dio;
+import 'package:flutter_bloc_simple_boilerplate/config/flavor_config.dart';
 import 'package:flutter_bloc_simple_boilerplate/localization/keys.dart';
+import 'package:flutter_bloc_simple_boilerplate/utils/pretty_print.dart';
 
 typedef ProcessCallback<T> = T Function(Map<String, dynamic> responseData);
+enum Status { Success, Error, ConnectivityError }
 
 class DataResponse<T> {
   late Status status;
@@ -23,6 +26,8 @@ class DataResponse<T> {
   String toString() {
     return 'Status : $status \n Message : $message \n Data : $data';
   }
+
+  bool get isSuccess => status == Status.Success;
 }
 
 Future<DataResponse<T>> makeRequest<T>(
@@ -31,7 +36,10 @@ Future<DataResponse<T>> makeRequest<T>(
 }) async {
   try {
     final response = await request;
-    print(response.data);
+    if (FlavorConfig.isDevelopment) {
+      prettyPrintJson(response.data);
+    }
+
     if (response.statusCode != 200 /* || response.data['success'] != true */) {
       return DataResponse.error(message: Keys.default_error_message);
     } else {
@@ -40,7 +48,10 @@ Future<DataResponse<T>> makeRequest<T>(
       );
     }
   } catch (e) {
-    print(e);
+    if (FlavorConfig.isDevelopment) {
+      print(e);
+    }
+
     if (e is dio.DioError) {
       if (e.error is SocketException) {
         return DataResponse.connectivityError(
@@ -51,5 +62,3 @@ Future<DataResponse<T>> makeRequest<T>(
     return DataResponse.error(message: Keys.default_error_message);
   }
 }
-
-enum Status { Success, Error, ConnectivityError }
