@@ -19,9 +19,9 @@ https://pub.dev/packages/flutter_translate/example
 
 ```dart
     const supportLocaleInfos = [
-    LocaleInfo(Locale('vi', 'VN'), name: 'Tiếng Việt', flag: '🇻🇳',flagImageUrl: Assets.viIcon,),
-    LocaleInfo(Locale('en', 'US'),name: 'English', flag: '🇺🇸', flagImageUrl: Assets.enIcon),
-    LocaleInfo(Locale('ne', 'NE'), name: 'New Locale', flag: 'emoji', flagImageUrl: 'path/to/your/image/url/in/your/asset',)
+        LocaleInfo(Locale('vi', 'VN'), name: 'Tiếng Việt', flag: '🇻🇳',flagImageUrl: Assets.viIcon,),
+        LocaleInfo(Locale('en', 'US'),name: 'English', flag: '🇺🇸', flagImageUrl: Assets.enIcon),
+        LocaleInfo(Locale('ne', 'NE'), name: 'New Locale', flag: 'emoji', flagImageUrl: 'path/to/your/image/url/in/your/asset',)
     ];
 ```
 
