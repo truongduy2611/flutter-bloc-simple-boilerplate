@@ -1,9 +1,9 @@
 import 'dart:async';
 
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_simple_boilerplate/global_blocs/global_blocs.dart';
 import 'package:flutter_bloc_simple_boilerplate/models/user.dart';
 import 'package:flutter_bloc_simple_boilerplate/repositories/repositories.dart';
-import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 
 part 'login_event.dart';
@@ -18,13 +18,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     required this.userRepository,
     required this.alertBloc,
     required this.authenticationBloc,
-  }) : super(LoginInitial());
-
-  @override
-  Stream<LoginState> mapEventToState(
-    LoginEvent event,
-  ) async* {
-    if (event is OnPressedLoginButtonEvent) {
+  }) : super(LoginInitial()) {
+    on<OnPressedLoginButtonEvent>((event, emit) async {
       alertBloc.add(ShowAlertEvent.loading());
       // final response = await userRepository.api.login(event.payload);
       // print(response.data);
@@ -36,6 +31,6 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       // } else {
       //   alertBloc.add(ShowAlert(content: response.message));
       // }
-    }
+    });
   }
 }

@@ -16,10 +16,8 @@ DisplayType displayTypeOf(BuildContext context) {
   final orientation = MediaQuery.of(context).orientation;
   final width = MediaQuery.of(context).size.width;
 
-  if ((orientation == Orientation.landscape &&
-          width > _desktopLandscapeBreakpoint) ||
-      (orientation == Orientation.portrait &&
-          width > _desktopPortraitBreakpoint)) {
+  if ((orientation == Orientation.landscape && width > _desktopLandscapeBreakpoint) ||
+      (orientation == Orientation.portrait && width > _desktopPortraitBreakpoint)) {
     return DisplayType.desktop;
   } else {
     return DisplayType.mobile;
@@ -35,8 +33,7 @@ bool isDisplayDesktop(BuildContext context) {
 /// Returns a boolean if we are in a display of [DisplayType.desktop] but less
 /// than [_desktopLandscapeBreakpoint] width. Used to build adaptive and responsive layouts.
 bool isDisplaySmallDesktop(BuildContext context) {
-  return isDisplayDesktop(context) &&
-      MediaQuery.of(context).size.width > _desktopLandscapeBreakpoint;
+  return isDisplayDesktop(context) && MediaQuery.of(context).size.width > _desktopLandscapeBreakpoint;
 }
 
 /// Returns textColor on a background color
@@ -62,8 +59,7 @@ int _numberOfColumns(double width) {
 
 int adaptiveColumns({double sm = 4, required BuildContext context}) {
   final media = MediaQuery.of(context);
-  final int numberOfColumns =
-      _numberOfColumns(media.size.width - media.viewPadding.horizontal);
+  final int numberOfColumns = _numberOfColumns(media.size.width - media.viewPadding.horizontal);
   return numberOfColumns ~/ sm;
 }
 
@@ -84,9 +80,7 @@ double gutter(BuildContext context) {
 double adaptiveWidth({required int columns, required BuildContext context}) {
   final size = MediaQuery.of(context).size;
   final gutterSize = gutter(context);
-  return (size.width - (gutterSize * columns + 1)) /
-      _numberOfColumns(size.width) *
-      columns;
+  return (size.width - (gutterSize * columns + 1)) / _numberOfColumns(size.width) * columns;
 }
 
 extension BuildContextExtension on BuildContext {
@@ -96,15 +90,5 @@ extension BuildContextExtension on BuildContext {
   double get height => MediaQuery.of(this).size.height;
   bool get isPortrait => mediaQuery.orientation == Orientation.portrait;
   TextTheme get textTheme => Theme.of(this).textTheme;
-  TextStyle? get headline1 => textTheme.headline1;
-  TextStyle? get headline2 => textTheme.headline2;
-  TextStyle? get headline3 => textTheme.headline3;
-  TextStyle? get headline4 => textTheme.headline4;
-  TextStyle? get headline5 => textTheme.headline5;
-  TextStyle? get headline6 => textTheme.headline6;
-  TextStyle? get bodyText1 => textTheme.bodyText1;
-  TextStyle? get bodyText2 => textTheme.bodyText2;
-  TextStyle? get buttonTextTheme => textTheme.button;
-  TextStyle? get captionTextTheme => textTheme.caption;
   Brightness get brightness => theme.brightness;
 }

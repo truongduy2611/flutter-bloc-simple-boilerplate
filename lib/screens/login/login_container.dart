@@ -80,10 +80,9 @@ class _LoginContainerState extends State<LoginContainer> {
                 ReactiveTextField(
                   formControlName: 'email',
                   autocorrect: false,
-                  validationMessages: (_) => {
-                    ValidationMessage.required:
-                        translate(Keys.email_is_required),
-                    ValidationMessage.email: translate(Keys.email_is_invalid)
+                  validationMessages: {
+                    ValidationMessage.required: (_) => translate(Keys.email_is_required),
+                    ValidationMessage.email: (_) => translate(Keys.email_is_invalid)
                   },
                   decoration: InputDecoration(
                     labelText: translate(
@@ -97,9 +96,8 @@ class _LoginContainerState extends State<LoginContainer> {
                   formControlName: 'password',
                   autocorrect: false,
                   obscureText: true,
-                  validationMessages: (_) => {
-                    ValidationMessage.required:
-                        translate(Keys.password_is_required),
+                  validationMessages: {
+                    ValidationMessage.required: (_) => translate(Keys.password_is_required),
                   },
                   decoration: InputDecoration(
                     labelText: translate(Keys.password),

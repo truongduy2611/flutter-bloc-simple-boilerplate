@@ -33,46 +33,40 @@ class AppearanceSettingTile extends StatelessWidget {
 
           return AlertDialog(
             contentPadding: const EdgeInsets.all(spacing * 2),
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(spacing)),
             title: Text(translate(Keys.appearance)),
             content: SingleChildScrollView(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  // SizedBox(
-                  //   width: widthOf(context),
-                  //   height: 160,
-                  //   child: MaterialColorPicker(
-                  //     allowShades: false,
-                  //     onMainColorChange: (color) {
-                  //       if (color is MaterialColor) {
-                  //         BlocProvider.of<ThemeBloc>(context).add(
-                  //           SetMainColorEvent(color: color),
-                  //         );
-                  //       }
-                  //     },
-                  //     selectedColor: themeState.mainColor,
-                  //     colors: Colors.primaries,
-                  //     // selectedColor: Colors.red,
-                  //   ),
-                  // ),
+                  SizedBox(
+                    width: double.infinity,
+                    height: 256,
+                    child: MaterialColorPicker(
+                      allowShades: false,
+                      onMainColorChange: (color) {
+                        if (color is MaterialColor) {
+                          BlocProvider.of<ThemeBloc>(context).add(
+                            SetMainColorEvent(color: color),
+                          );
+                        }
+                      },
+                      selectedColor: themeState.mainColor,
+                      colors: Colors.primaries,
+                    ),
+                  ),
                   RadioListTile<ThemeMode>(
-                    dense: true,
                     value: ThemeMode.light,
                     groupValue: themeMode,
                     onChanged: _onSetThemeMode,
                     title: Text(translate(Keys.appearance_light)),
                   ),
                   RadioListTile<ThemeMode>(
-                    dense: true,
                     value: ThemeMode.dark,
                     groupValue: themeMode,
                     onChanged: _onSetThemeMode,
                     title: Text(translate(Keys.appearance_dark)),
                   ),
                   RadioListTile<ThemeMode>(
-                    dense: true,
                     value: ThemeMode.system,
                     groupValue: themeMode,
                     onChanged: _onSetThemeMode,
@@ -93,12 +87,10 @@ class AppearanceSettingTile extends StatelessWidget {
                   //       : null,
                   // ),
                   SwitchListTile(
-                    dense: true,
                     value: useAdaptiveFontSystem == true,
                     title: Text(translate(Keys.use_adaptive_font_system)),
                     onChanged: (useAdaptiveFontSystem) {
-                      BlocProvider.of<ThemeBloc>(context).add(
-                          SetAdaptiveFontSystemEvent(useAdaptiveFontSystem));
+                      BlocProvider.of<ThemeBloc>(context).add(SetAdaptiveFontSystemEvent(useAdaptiveFontSystem));
                     },
                   ),
                 ],

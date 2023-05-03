@@ -35,7 +35,7 @@ class MovieCard extends StatelessWidget {
                 children: [
                   Text(
                     movie.title ?? '',
-                    style: context.headline6,
+                    style: Theme.of(context).textTheme.titleMedium,
                     textAlign: TextAlign.start,
                   ),
                   Text(

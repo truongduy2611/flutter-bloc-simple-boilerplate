@@ -16,21 +16,16 @@ class MovieDetailBloc extends Bloc<MovieDetailEvent, MovieDetailState> {
 
   MovieDetailBloc({required this.movieId, required this.movieRepository})
       : refreshController = RefreshController(),
-        super(MovieDetailInitial());
-
-  @override
-  Stream<MovieDetailState> mapEventToState(
-    MovieDetailEvent event,
-  ) async* {
-    if (event is FetchMovieDetailEvent) {
+        super(MovieDetailInitial()) {
+    on<FetchMovieDetailEvent>((event, emit) async {
       final response = await movieRepository.api.fetchMovieDetail(movieId);
       if (response.isSuccess) {
-        yield MovieDetailLoaded(response.data);
+        emit(MovieDetailLoaded(response.data));
         refreshController.refreshCompleted();
       } else {
-        yield MovieDetailError(response.message);
+        emit(MovieDetailError(response.message));
         refreshController.refreshFailed();
       }
-    }
+    });
   }
 }

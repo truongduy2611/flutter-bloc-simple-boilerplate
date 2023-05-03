@@ -16,8 +16,7 @@ class MovieDetailContainer extends StatelessWidget {
           bloc.add(FetchMovieDetailEvent());
         },
         controller: bloc.refreshController,
-        child: BlocBuilder<MovieDetailBloc, MovieDetailState>(
-            builder: (context, state) {
+        child: BlocBuilder<MovieDetailBloc, MovieDetailState>(builder: (context, state) {
           if (state is MovieDetailLoaded) {
             final movie = state.data;
             return SingleChildScrollView(
@@ -41,7 +40,7 @@ class MovieDetailContainer extends StatelessWidget {
                           children: [
                             Text(
                               movie.title ?? '',
-                              style: context.headline6,
+                              style: Theme.of(context).textTheme.titleMedium,
                               textAlign: TextAlign.start,
                             ),
                             Text(
@@ -61,9 +60,7 @@ class MovieDetailContainer extends StatelessWidget {
                                       size: spacing * 2,
                                     ),
                                   ),
-                                  TextSpan(
-                                      text:
-                                          ' ${movie.voteAverage} (${movie.voteCount}) • ${movie.releaseDate}'),
+                                  TextSpan(text: ' ${movie.voteAverage} (${movie.voteCount}) • ${movie.releaseDate}'),
                                 ],
                               ),
                             ),
@@ -73,7 +70,14 @@ class MovieDetailContainer extends StatelessWidget {
                                 runSpacing: -spacing / 2,
                                 spacing: spacing / 2,
                                 children: movie.genres!
-                                    .map((o) => Chip(label: Text(o.name!)))
+                                    .map(
+                                      (o) => Chip(
+                                        label: Text(o.name!),
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(30),
+                                        ),
+                                      ),
+                                    )
                                     .toList(),
                               ),
                           ],

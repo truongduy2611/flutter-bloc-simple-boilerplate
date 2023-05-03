@@ -15,7 +15,7 @@ class ErrorContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = context.textTheme;
-    final textStyle = dense ? textTheme.caption : textTheme.headline6;
+    final textStyle = dense ? textTheme.titleSmall : textTheme.titleMedium;
     final textSpacing = dense ? spacing : spacing * 2.0;
     return Center(
       child: Column(

@@ -18,13 +18,8 @@ class PopularMovieBloc extends Bloc<PopularMovieEvent, PopularMovieState> {
   PopularMovieBloc({
     required this.movieRepository,
     required this.refreshController,
-  }) : super(PopularMovieInitial());
-
-  @override
-  Stream<PopularMovieState> mapEventToState(
-    PopularMovieEvent event,
-  ) async* {
-    if (event is FetchPopularMovieListEvent) {
+  }) : super(PopularMovieInitial()) {
+    on<FetchPopularMovieListEvent>((event, emit) async {
       final currentState = state;
       List<MovieModel> movieList = <MovieModel>[];
       int page = 1;
@@ -37,10 +32,10 @@ class PopularMovieBloc extends Bloc<PopularMovieEvent, PopularMovieState> {
       final response = await movieRepository.api.fetchPopularMovies(page);
 
       if (response.status == Status.Success) {
-        yield PopularMovieLoaded(page: page, popularMovieList: [
+        emit(PopularMovieLoaded(page: page, popularMovieList: [
           ...movieList,
           ...response.data,
-        ]);
+        ]));
 
         if (response.data.isEmpty) {
           refreshController.loadNoData();
@@ -49,27 +44,29 @@ class PopularMovieBloc extends Bloc<PopularMovieEvent, PopularMovieState> {
         }
       } else {
         if (currentState is! PopularMovieLoaded) {
-          yield PopularMovieFailure(response.message);
+          emit(PopularMovieFailure(response.message));
         }
         refreshController.loadFailed();
       }
-    }
+    });
 
-    if (event is RefreshPopularMovieListEvent) {
-      final response = await movieRepository.api.fetchPopularMovies(1);
-      refreshController.resetNoData();
+    on<RefreshPopularMovieListEvent>(
+      (event, emit) async {
+        final response = await movieRepository.api.fetchPopularMovies(1);
+        refreshController.resetNoData();
 
-      if (response.status == Status.Success) {
-        yield PopularMovieLoaded(
-          page: 1,
-          popularMovieList: response.data,
-        );
+        if (response.status == Status.Success) {
+          emit(PopularMovieLoaded(
+            page: 1,
+            popularMovieList: response.data,
+          ));
 
-        refreshController.refreshCompleted();
-      } else {
-        yield PopularMovieFailure(response.message);
-        refreshController.refreshFailed();
-      }
-    }
+          refreshController.refreshCompleted();
+        } else {
+          emit(PopularMovieFailure(response.message));
+          refreshController.refreshFailed();
+        }
+      },
+    );
   }
 }

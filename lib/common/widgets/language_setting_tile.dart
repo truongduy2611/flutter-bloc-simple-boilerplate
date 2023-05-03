@@ -30,9 +30,6 @@ class _LanguageSettingTileState extends State<LanguageSettingTile> {
       builder: (context) {
         return AlertDialog(
           contentPadding: const EdgeInsets.all(spacing * 2),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(spacing),
-          ),
           title: Text(translate(Keys.language)),
           content: StatefulBuilder(builder: (context, setState) {
             final currentLocaleInfo = supportLocaleInfoList.firstWhere(
@@ -46,8 +43,7 @@ class _LanguageSettingTileState extends State<LanguageSettingTile> {
                 groupValue: currentLocaleInfo,
                 onChanged: (locale) {
                   currentSelectedLocale = locale!.locale;
-                  isChanged = locale.locale.countryCode !=
-                      widget.currentLanguage.countryCode;
+                  isChanged = locale.locale.countryCode != widget.currentLanguage.countryCode;
                   setState(() {});
                   this.setState(() {});
                 },
@@ -80,9 +76,7 @@ class _LanguageSettingTileState extends State<LanguageSettingTile> {
               onPressed: () {
                 Navigator.pop(context);
                 if (isChanged) {
-                  LocalizedApp.of(context)
-                      .delegate
-                      .changeLocale(currentSelectedLocale);
+                  LocalizedApp.of(context).delegate.changeLocale(currentSelectedLocale);
                   Phoenix.rebirth(context);
                 }
               },
@@ -97,8 +91,7 @@ class _LanguageSettingTileState extends State<LanguageSettingTile> {
   Widget build(BuildContext context) {
     final localeDelegate = LocalizedApp.of(context).delegate;
     final currentLocale = localeDelegate.currentLocale;
-    final currentLocaleInfo = supportLocaleInfoList.firstWhere(
-        (l) => l.locale.countryCode == currentLocale.countryCode,
+    final currentLocaleInfo = supportLocaleInfoList.firstWhere((l) => l.locale.countryCode == currentLocale.countryCode,
         orElse: () => supportLocaleInfoList[0]);
 
     if (widget.languageTileBuilder != null) {

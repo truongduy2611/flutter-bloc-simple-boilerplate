@@ -29,7 +29,7 @@ class LoadingContainer extends StatelessWidget {
           Text(
             translate(messageId),
             textAlign: TextAlign.center,
-            style: context.buttonTextTheme,
+            style: Theme.of(context).textTheme.titleMedium,
           ),
           const SizedBox(height: spacing),
         ],

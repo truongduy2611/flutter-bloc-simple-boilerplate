@@ -1,38 +1,43 @@
 part of 'theme.dart';
 
 class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
-  ThemeBloc() : super(const ThemeState.system());
+  ThemeBloc() : super(const ThemeState.system()) {
+    on<SetAdaptiveFontSystemEvent>(
+      (event, emit) {
+        final newState = state.copyWith(
+          useAdaptiveFontSystem: event.useAdaptiveFontSystem,
+        );
+        emit(newState);
+        saveThemeState(newState);
+      },
+    );
 
-  @override
-  Stream<ThemeState> mapEventToState(
-    ThemeEvent event,
-  ) async* {
-    if (event is SetAdaptiveFontSystemEvent) {
-      final newState = state.copyWith(
-        useAdaptiveFontSystem: event.useAdaptiveFontSystem,
-      );
-      yield newState;
-      saveThemeState(newState);
-    }
-    if (event is LoadThemeFromPrefEvent) {
-      yield await getThemeState();
-    }
-    if (event is SetThemeMode) {
-      final newState = state.copyWith(mode: event.mode);
-      yield newState;
-      saveThemeState(newState);
-    }
-    if (event is SetDarkMode) {
-      final newState = state.copyWith(darkMode: event.mode);
-      yield newState;
-      saveThemeState(newState);
-    }
-
-    if (event is SetMainColorEvent) {
-      final newState = state.copyWith(mainColor: event.color);
-      yield newState;
-      saveThemeState(newState);
-    }
+    on<LoadThemeFromPrefEvent>(
+      (event, emit) async {
+        emit(await getThemeState());
+      },
+    );
+    on<SetThemeMode>(
+      (event, emit) {
+        final newState = state.copyWith(mode: event.mode);
+        emit(newState);
+        saveThemeState(newState);
+      },
+    );
+    on<SetDarkMode>(
+      (event, emit) {
+        final newState = state.copyWith(darkMode: event.mode);
+        emit(newState);
+        saveThemeState(newState);
+      },
+    );
+    on<SetMainColorEvent>(
+      (event, emit) {
+        final newState = state.copyWith(mainColor: event.color);
+        emit(newState);
+        saveThemeState(newState);
+      },
+    );
   }
 
   Future<ThemeState> getThemeState() async {

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_simple_boilerplate/global_blocs/global_blocs.dart';
 import 'package:flutter_bloc_simple_boilerplate/localization/localization.dart';
+import 'package:flutter_material_color_picker/flutter_material_color_picker.dart';
 import 'package:flutter_offline/flutter_offline.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:flutter_translate/flutter_translate.dart';

@@ -1,16 +1,15 @@
 part of 'alert.dart';
 
 class AlertBloc extends Bloc<AlertEvent, AlertState> {
-  AlertBloc() : super(AlertHidden());
+  AlertBloc() : super(AlertHidden()) {
+    on<ShowAlertEvent>((event, emit) {
+      emit(AlertInDisplayed(type: event.type, messageId: event.content));
+    });
 
-  @override
-  Stream<AlertState> mapEventToState(
-    AlertEvent event,
-  ) async* {
-    if (event is ShowAlertEvent) {
-      yield AlertInDisplayed(type: event.type, messageId: event.content);
-    } else {
-      yield AlertHidden();
-    }
+    on<HideAlertEvent>(
+      (event, emit) {
+        emit(AlertHidden());
+      },
+    );
   }
 }

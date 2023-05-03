@@ -29,7 +29,7 @@ class EmptyContainer extends StatelessWidget {
             child: Text(
               translate(messageId),
               textAlign: TextAlign.center,
-              style: context.headline6,
+              style: Theme.of(context).textTheme.titleMedium,
             ),
           )
         ],

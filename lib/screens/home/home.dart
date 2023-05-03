@@ -33,8 +33,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     return Scaffold(
       appBar: AppBar(
         title: Text(translate(Keys.home)),
-        brightness: ThemeData.estimateBrightnessForColor(
-            Theme.of(context).primaryColor),
         actions: [
           IconButton(
             icon: const Icon(Icons.settings),
@@ -56,9 +54,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         currentIndex: _currentTab,
         onTap: _onTapBottomNavigationBar,
         items: [
-          BottomNavigationBarItem(
-              icon: const Icon(Icons.movie_filter),
-              label: translate(Keys.popular_movie_list)),
+          BottomNavigationBarItem(icon: const Icon(Icons.movie_filter), label: translate(Keys.popular_movie_list)),
           BottomNavigationBarItem(
             icon: const Icon(Icons.favorite),
             label: translate(Keys.favorite_movie_list),

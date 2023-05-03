@@ -7,7 +7,6 @@ import 'common/widgets/widgets.dart';
 import 'global_blocs/theme/theme.dart';
 import 'router/route_generator.dart';
 import 'router/routes.dart';
-import 'utils/theme_helpers.dart';
 
 class MyApp extends StatelessWidget {
   @override
@@ -17,15 +16,15 @@ class MyApp extends StatelessWidget {
     return BlocBuilder<ThemeBloc, ThemeState>(builder: (context, state) {
       return MaterialApp(
         title: 'Flutter Bloc Simple Boilerplate',
-        theme: buildTheme(
-          mode: ThemeMode.light,
-          mainColor: Colors.blue,
-          useAdaptiveFontSystem: state.useAdaptiveFontSystem,
+        theme: ThemeData(
+          brightness: Brightness.light,
+          colorSchemeSeed: state.mainColor,
+          useMaterial3: true,
         ),
-        darkTheme: buildTheme(
-          mode: ThemeMode.dark,
-          mainColor: Colors.blue,
-          useAdaptiveFontSystem: state.useAdaptiveFontSystem,
+        darkTheme: ThemeData(
+          brightness: Brightness.dark,
+          colorSchemeSeed: state.mainColor,
+          useMaterial3: true,
         ),
         themeMode: state.mode,
         onGenerateRoute: RouteGenerator.generateRoute,

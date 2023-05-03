@@ -107,7 +107,7 @@ class _LoadingDialog extends StatelessWidget {
 
   final String messageId;
   static const _defaultDialogShape = RoundedRectangleBorder(
-      borderRadius: BorderRadius.all(Radius.circular(12)));
+      borderRadius: BorderRadius.all(Radius.circular(20)));
 
   @override
   Widget build(BuildContext context) {

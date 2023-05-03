@@ -26,7 +26,10 @@ class RouteGenerator {
         );
 
       case Routes.home:
-        return createRoute(child: const HomePage());
+        return createRoute(
+          child: const HomePage(),
+          isFullscreenDialog: true,
+        );
 
       case Routes.settings:
         return createRoute(child: const SettingsPage());
